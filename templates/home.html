@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/static/pro_card.css">
+</head>
+<style>
+    h1 {
+        color: red;
+    }
+
+
+</style>
+<body>
+{% if error %}
+    <center>
+    <h3>{{ error }}</h3>
+</center>
+{% endif %}
+
+{% for item in products %}
+    <div class="product-card">
+        <img src="{{ item.image }}" alt="Fjallraven Backpack">
+        <div class="product-card-body">
+            <div class="product-card-title product-title">{{ item.title }}</div>
+            <div class="product-card-category">
+                Category: {{ item.category }}
+            </div>
+            <div class="product-card-description product-description">{{ item.description }}</div>
+            <div class="product-card-footer">
+                <span class="product-card-price">${{ item.price }}</span>
+                <button class="product-card-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</body>
+</html>
