@@ -1,0 +1,93 @@
+{% extends "master.html" %}
+{% block main_content %}
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Contact Support Form -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Contact Support</h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name"><i class="fa fa-user mr-1"></i>Your Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="fa fa-envelope mr-1"></i>Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject"><i class="fa fa-tag mr-1"></i>Subject</label>
+                                <input type="text" class="form-control" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message"><i class="fa fa-comment mr-1"></i>How can we help you?</label>
+                                <textarea class="form-control" id="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Info & FAQ -->
+            <div class="col-lg-6 mb-4">
+                <div class="row h-100">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 shadow">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0">Support Info</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-2"><i class="fa fa-envelope mr-2"></i><strong>Email:</strong>
+                                    support@eshop.com</p>
+                                <p class="mb-2"><i class="fa fa-phone mr-2"></i><strong>Phone:</strong> +1 (234)
+                                    567-8901</p>
+                                <p><i class="fa fa-comments mr-2"></i><strong>Live Chat:</strong> 9AM - 6PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card h-100 shadow">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">FAQs</h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-2"><strong>How do I track my order?</strong><br>
+                                    You’ll receive a tracking link via email after your order.
+                                </p>
+                                <p class="mb-2"><strong>Can I return a product?</strong><br>
+                                    Yes, please see our <a href="#">return policy</a>.
+                                </p>
+                                <p class="mb-0"><strong>Urgent help?</strong><br>
+                                    Please call or use our live chat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Our Location</h5>
+                    </div>
+                    <div class="card-body p-2">
+                        <div style="width: 100%;">
+                            <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d265.9289028007851!2d104.89460509809182!3d11.568113242651208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095173761d4a53%3A0xcd09ff2f4d326e3f!2sSETEC%20Institute!5e1!3m2!1sen!2skh!4v1751948617609!5m2!1sen!2skh"
+                                    width="100%" height="350" frameborder="0" style="border:0;" allowfullscreen=""
+                                    loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,39 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="/static/pro_card.css">
-</head>
-<style>
-    h1 {
-        color: red;
-    }
-
-
-</style>
-<body>
-{% if error %}
-    <center>
-    <h3>{{ error }}</h3>
-</center>
-{% endif %}
-
-{% for item in products %}
-    <div class="product-card">
-        <img src="{{ item.image }}" alt="Fjallraven Backpack">
-        <div class="product-card-body">
-            <div class="product-card-title product-title">{{ item.title }}</div>
-            <div class="product-card-category">
-                Category: {{ item.category }}
+{% extends "master.html" %}
+{% block main_content %}
+    {% if error %}
+        <center>
+            <h3>{{ error }}</h3>
+        </center>
+    {% endif %}
+    <div class="row">
+        {% for item in products %}
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="product-card">
+                    <span
+                            class="badge badge-pill badge-info pro-cat"
+                    >{{ item.category }}</span>
+                    <img src="{{ item.image }}" alt="Fjallraven Backpack">
+                    <div class="product-card-body">
+                        <div class="product-card-title product-title">{{ item.title }}</div>
+                        <div class="product-card-description product-description">{{ item.description }}</div>
+                        <div class="product-card-footer">
+                            <span class="product-card-price text-danger">${{ item.price }}</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-success mt2 w-100">Add to Cart 🛒</button>
+                    </div>
+                </div>
             </div>
-            <div class="product-card-description product-description">{{ item.description }}</div>
-            <div class="product-card-footer">
-                <span class="product-card-price">${{ item.price }}</span>
-                <button class="product-card-btn">Add to Cart</button>
-            </div>
-        </div>
+        {% endfor %}
     </div>
-{% endfor %}
-</body>
-</html>
+
+{% endblock %}

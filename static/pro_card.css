@@ -1,6 +1,6 @@
 
 .product-card {
-    width: 350px;
+    width: 100%;
     border: 1px solid #eee;
     border-radius: 14px;
     overflow: hidden;
@@ -85,4 +85,10 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.pro-cat {
+    position: absolute;
+    top: 30px;
+    left: 25px;
 }
