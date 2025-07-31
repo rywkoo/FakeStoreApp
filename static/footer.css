@@ -1,0 +1,134 @@
+/* Full screen flex container to center content vertically and horizontally */
+.contact-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* full viewport height */
+  background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+  padding: 20px;
+  box-sizing: border-box;
+  color: white;
+}
+
+/* Inner content wrapper */
+.contact-hero-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+/* Hero title */
+.hero-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #0d6efd;
+}
+
+/* Form controls */
+.contact-form .form-control {
+  border-radius: 12px;
+  border: 1.5px solid #ccc;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
+  outline: none;
+}
+
+/* Submit button */
+.contact-form button.btn-primary {
+  border-radius: 50px;
+  font-weight: 600;
+  padding: 15px 50px;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form button.btn-primary:hover {
+  background-color: #0b5ed7;
+  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.5);
+  border-color: #0b5ed7;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .contact-hero-content {
+    padding: 30px 20px;
+  }
+  .contact-form button.btn-primary {
+    width: 100%;
+    padding: 15px 0;
+  }
+}
+
+/* FAQ Container */
+.faq-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Accordion item */
+.accordion-item {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.3s ease;
+}
+
+.accordion-item:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Accordion header button */
+.accordion-button {
+  background-color: #f9f9f9;
+  color: #222;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 0;
+  padding: 1rem 1.25rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #007bff;
+  color: white;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.15);
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Accordion body */
+.accordion-body {
+  background-color: white;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #555;
+  border-top: 1px solid #ddd;
+  line-height: 1.5;
+}
+
+/* Smooth transition for collapsing */
+.accordion-collapse {
+  transition: max-height 0.35s ease;
+}

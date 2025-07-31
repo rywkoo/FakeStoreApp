@@ -5,25 +5,59 @@
             <h3>{{ error }}</h3>
         </center>
     {% endif %}
-    <div class="row">
-        {% for item in products %}
+    <div class="container-fluid p-0">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner position-relative text-white d-flex align-items-center justify-content-center" 
+            style="background: url('/path/to/your/hero-image.jpg') center center/cover no-repeat; height: 450px;">
+        <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="hero-text position-relative text-center px-3">
+        <h1 class="display-3 fw-bold">Welcome to FakeStore</h1>
+        <p class="lead">Discover the best products handpicked just for you.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section container my-5">
+        <h2 class="mb-4 fw-bold text-center">Featured Products</h2>
+        <div class="row g-4 justify-content-center">
+        {% for item in products[:4] %}
             <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="product-card">
                     <span
                             class="badge badge-pill badge-info pro-cat"
                     >{{ item.category }}</span>
-                    <img src="{{ item.image }}" alt="Fjallraven Backpack">
+                    <a href="product/{{ item.id }}"><img src="{{ item.image }}" alt="Fjallraven Backpack"></a>
                     <div class="product-card-body">
-                        <div class="product-card-title product-title">{{ item.title }}</div>
+                        <div class="product-card-title product-title"><a href="product/{{ item.id }}">{{ item.title }}</a></div>
                         <div class="product-card-description product-description">{{ item.description }}</div>
                         <div class="product-card-footer">
                             <span class="product-card-price text-danger">${{ item.price }}</span>
                         </div>
-                        <button class="btn btn-sm btn-outline-success mt2 w-100">Add to Cart 🛒</button>
+                        <button @click="addToCart({{ item }})" class="btn btn-sm btn-outline-success mt2 w-100">Add to Cart 🛒</button>
                     </div>
                 </div>
             </div>
         {% endfor %}
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section container mb-5">
+        <div class="card shadow rounded-4">
+        <div class="card-header bg-success text-white rounded-top-4">
+            <h5 class="mb-0">Our Location</h5>
+        </div>
+        <div class="card-body p-0">
+            <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d265.9289028007851!2d104.89460509809182!3d11.568113242651208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095173761d4a53%3A0xcd09ff2f4d326e3f!2sSETEC%20Institute!5e1!3m2!1sen!2skh!4v1751948617609!5m2!1sen!2skh"
+            width="100%" height="350" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        </div>
+    </section>
+
     </div>
+
+
 
 {% endblock %}

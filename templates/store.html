@@ -1,0 +1,29 @@
+{% extends "master.html" %}
+{% block main_content %}
+    {% if error %}
+        <center>
+            <h3>{{ error }}</h3>
+        </center>
+    {% endif %}
+    <div class="row">
+        {% for item in products %}
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="product-card">
+                    <span
+                            class="badge badge-pill badge-info pro-cat"
+                    >{{ item.category }}</span>
+                    <a href="product/{{ item.id }}"><img src="{{ item.image }}" alt="Fjallraven Backpack"></a>
+                    <div class="product-card-body">
+                        <div class="product-card-title product-title"><a href="product/{{ item.id }}">{{ item.title }}</a></div>
+                        <div class="product-card-description product-description">{{ item.description }}</div>
+                        <div class="product-card-footer">
+                            <span class="product-card-price text-danger">${{ item.price }}</span>
+                        </div>
+                        <button @click="addToCart({{ item }})" class="btn btn-sm btn-outline-success mt2 w-100">Add to Cart 🛒</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

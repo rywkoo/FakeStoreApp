@@ -1,0 +1,51 @@
+{% extends "master.html" %}
+{% block main_content %}
+    {% if error %}
+        <center>
+            <h3>{{ error }}</h3>
+        </center>
+    {% endif %}
+  <div class="container mt-4">
+    <h5 class="mb-3">Your Cart</h5>
+
+    <div class="card mb-2">
+      <div 
+        class="row no-gutters align-items-center"
+        v-for="(item, index) in cart_list"
+      >
+        <!-- Image -->
+        <div class="col-3 text-center">
+          <img 
+          :src="item.image" 
+          class="img-fluid" 
+          :alt="item.image" 
+          style="max-height: 100px; object-fit: contain; padding: 8px;" />
+        </div>
+
+        <!-- Details -->
+        <div class="col-6">
+          <div class="card-body py-2 px-3"
+
+          >
+            <h6 class="mb-1" style="font-size: 0.95rem;">[[ item.title ]]</h6>
+            <div style="font-size: 0.8rem;" class="text-muted mb-1">[[ item.category ]]</div>
+            <p class="mb-0 product-description" style="font-size: 0.8rem;">[[ item.description ]]</p>
+          </div>
+        </div>
+
+        <!-- Price / Qty / Button -->
+        <div class="col-3 text-center" style="padding: 0.75rem;">
+          <div class="font-weight-bold mb-2" style="font-size: 0.9rem;">[[ item.price ]]</div>
+          <input type="number" min="1" v-model.number="item.quantity" @change="saveCart" class="form-control form-control-sm mb-2" style="max-width: 80px; margin: 0 auto;" />
+          <button @click="removeCartItem(index)" class="btn btn-sm btn-outline-danger">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-right mt-3">
+      <h6>Total: <span class="font-weight-bold">$[[ total ]]</span></h6>
+      <a href="/checkout" class="btn btn-sm btn-success mt-2">Checkout</a>
+    </div>
+
+  </div>
+{% endblock %}

@@ -1,93 +1,73 @@
 {% extends "master.html" %}
 {% block main_content %}
-    <div class="container mt-4">
-        <div class="row">
-            <!-- Contact Support Form -->
-            <div class="col-lg-6 mb-4">
-                <div class="card shadow h-100">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">Contact Support</h4>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="name"><i class="fa fa-user mr-1"></i>Your Name</label>
-                                <input type="text" class="form-control" id="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="fa fa-envelope mr-1"></i>Email Address</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject"><i class="fa fa-tag mr-1"></i>Subject</label>
-                                <input type="text" class="form-control" id="subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message"><i class="fa fa-comment mr-1"></i>How can we help you?</label>
-                                <textarea class="form-control" id="message" rows="4" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-                        </form>
-                    </div>
-                </div>
+<div class="contact-hero">
+  <div class="contact-hero-content">
+    <h1 class="hero-title">Need Help? Contact Support</h1>
+    <form action="/contact" method="post" class="contact-form">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <input type="text" name="name" class="form-control form-control-lg" placeholder="Your Name" required>
+        </div>
+        <div class="col-md-6">
+          <input type="email" name="email" class="form-control form-control-lg" placeholder="Your Email" required>
+        </div>
+        <div class="col-12">
+          <input type="text" name="subject" class="form-control form-control-lg" placeholder="Subject" required>
+        </div>
+        <div class="col-12">
+          <textarea name="message" rows="5" class="form-control form-control-lg" placeholder="Describe your issue..." required></textarea>
+        </div>
+      </div>
+      <div class="mt-4 text-center">
+        <button type="submit" class="btn btn-primary btn-lg px-5">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- FAQ Section -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h3 class="text-dark mb-4 text-center">Frequently Asked Questions</h3>
+      <div class="accordion" id="faqAccordion">
+        {% for item in loop_faq %}
+        <div class="accordion-item">
+        <h2 class="accordion-header" id="heading{{ loop.index }}">
+            <button class="accordion-button {% if loop.index != 1 %}collapsed{% endif %}" 
+                    type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#collapse{{ loop.index }}" 
+                    aria-expanded="{{ 'true' if loop.index == 1 else 'false' }}" 
+                    aria-controls="collapse{{ loop.index }}">
+            {{ item.question }}
+            </button>
+        </h2>
+        <div id="collapse{{ loop.index }}" 
+            class="accordion-collapse collapse {% if loop.index == 1 %}show{% endif %}" 
+            aria-labelledby="heading{{ loop.index }}" 
+            data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+            {{ item.answer }}
             </div>
-            <!-- Info & FAQ -->
-            <div class="col-lg-6 mb-4">
-                <div class="row h-100">
-                    <div class="col-md-12 mb-3">
-                        <div class="card h-100 shadow">
-                            <div class="card-header bg-info text-white">
-                                <h5 class="mb-0">Support Info</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="mb-2"><i class="fa fa-envelope mr-2"></i><strong>Email:</strong>
-                                    support@eshop.com</p>
-                                <p class="mb-2"><i class="fa fa-phone mr-2"></i><strong>Phone:</strong> +1 (234)
-                                    567-8901</p>
-                                <p><i class="fa fa-comments mr-2"></i><strong>Live Chat:</strong> 9AM - 6PM</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card h-100 shadow">
-                            <div class="card-header bg-light">
-                                <h6 class="mb-0">FAQs</h6>
-                            </div>
-                            <div class="card-body">
-                                <p class="mb-2"><strong>How do I track my order?</strong><br>
-                                    You’ll receive a tracking link via email after your order.
-                                </p>
-                                <p class="mb-2"><strong>Can I return a product?</strong><br>
-                                    Yes, please see our <a href="#">return policy</a>.
-                                </p>
-                                <p class="mb-0"><strong>Urgent help?</strong><br>
-                                    Please call or use our live chat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
         </div>
 
-        <!-- Map Section -->
-        <div class="row mt-2">
-            <div class="col-12">
-                <div class="card shadow">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="mb-0">Our Location</h5>
-                    </div>
-                    <div class="card-body p-2">
-                        <div style="width: 100%;">
-                            <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d265.9289028007851!2d104.89460509809182!3d11.568113242651208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095173761d4a53%3A0xcd09ff2f4d326e3f!2sSETEC%20Institute!5e1!3m2!1sen!2skh!4v1751948617609!5m2!1sen!2skh"
-                                    width="100%" height="350" frameborder="0" style="border:0;" allowfullscreen=""
-                                    loading="lazy"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+      </div>
     </div>
-{% endblock %}
+  </div>
+</div>
 
+
+<!-- Map Section (Full Width) -->
+<div class="w-100 mt-5">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d265.9289028007851!2d104.89460509809182!3d11.568113242651208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095173761d4a53%3A0xcd09ff2f4d326e3f!2sSETEC%20Institute!5e1!3m2!1sen!2skh!4v1751948617609!5m2!1sen!2skh"
+    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+{% endblock %}

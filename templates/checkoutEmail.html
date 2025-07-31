@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Your Order Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .invoice-box {
+      max-width: 600px;
+      margin: auto;
+      border: 1px solid #eee;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .invoice-box table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .invoice-box table th,
+    .invoice-box table td {
+      padding: 8px;
+      text-align: left;
+    }
+    .total-row {
+      font-weight: bold;
+      border-top: 2px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-box">
+    <h2>Thank you for your order!</h2>
+    <p>Here is a summary of your purchase:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart %}
+        <tr>
+          <td>{{ item.title }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ '%.2f'|format(item.price * item.quantity) }}</td>
+        </tr>
+        {% endfor %}
+        <tr class="total-row">
+          <td colspan="2">Total</td>
+          <td>${{ total }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 20px;">We'll send another message once your items are shipped.</p>
+    <p>— Ryuko</p>
+  </div>
+</body>
+</html>

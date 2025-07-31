@@ -1,0 +1,72 @@
+{% extends "master.html" %}
+{% block main_content %}
+    {% if error %}
+        <center>
+            <h3>{{ error }}</h3>
+        </center>
+    {% endif %}
+    
+<div class="container mt-5">
+  <div class="row">
+    <!-- Product Image -->
+    <div class="col-md-6" >
+      <img style="height:350px; width:600px; object-fit: contain;" src="{{ product['image'] }}" alt="{{ product['title'] }}" class="img-fluid rounded border shadow-sm">
+    </div>
+    <!-- Product Info -->
+    <div class="col-md-6">
+      <h2>{{ product['title'] }}</h2>
+      <p class="text-muted mb-1">Category: <strong>{{ product['category'] }}</strong></p>
+      <h4 class="text-danger mb-3">{{ product['price'] }}</h4>
+
+      <p class="mb-4">
+        {{ product['description'] }}
+      </p>
+
+      <!-- Quantity Control -->
+      <div class="d-flex align-items-center mb-4">
+        <label class="mr-2 mb-0 font-weight-bold">Quantity:</label>
+        <div class="input-group" style="width: 120px;">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="adjustQty(-1)">−</button>
+          </div>
+          <input type="number" class="form-control text-center" id="quantityInput" value="1" min="1">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="adjustQty(1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <button  @click="addToCart({{ item }})" class="btn btn-primary btn-lg">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+      <h4 class="mb-4">Reviews</h4>
+
+      <!-- Review Item -->
+      <div class="media mb-4">
+        <img src="https://i.pravatar.cc/48?img=5" class="mr-3 rounded-circle" alt="User" width="48" height="48">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1">John Doe <small class="text-muted ml-2">★★★★☆</small></h6>
+          Great quality and looks stylish. Highly recommend!
+        </div>
+      </div>
+
+      <div class="media mb-4">
+        <img src="https://i.pravatar.cc/48?img=8" class="mr-3 rounded-circle" alt="User" width="48" height="48">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1">Jane Smith <small class="text-muted ml-2">★★★☆☆</small></h6>
+          Decent for the price, but the straps could be more padded.
+        </div>
+      </div>
+
+      <!-- Add more reviews below -->
+    </div>
+  </div>
+</div>
+
+</br>
+
+{% endblock %}

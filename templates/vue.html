@@ -1,0 +1,101 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  const { createApp } = Vue
+
+createApp({
+  delimiters: ['[[', ']]'],
+  mounted() {
+    const saved = localStorage.getItem('cart');
+    if (saved) {
+      this.cart_list = JSON.parse(saved).map(item => ({
+        ...item,
+        quantity: item.quantity || 1
+      }));
+    }
+  },
+  data() {
+    return {
+      name: '',
+      phone: '',
+      email: '',
+      address: '',
+      cart_list: JSON.parse(localStorage.getItem('cart') || '[]')
+    }
+  },
+  computed: {
+    total() {
+      return this.cart_list
+        .reduce((acc, item) => acc + item.price * item.quantity, 0)
+        .toFixed(2);
+    }
+  },
+  methods: {
+    saveCart() {
+      localStorage.setItem('cart', JSON.stringify(this.cart_list));
+    },
+
+    addToCart(item) {
+      const existingItem = this.cart_list.find(p => p.id === item.id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        this.cart_list.push({ ...item, quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(this.cart_list));
+    },
+
+    removeCartItem(index) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.cart_list.splice(index, 1)
+          localStorage.setItem('cart', JSON.stringify(this.cart_list))
+        }
+      });
+    },
+
+    async submitOrder() {
+      if (!this.name || !this.phone || !this.email || !this.address) {
+        alert('Please fill in all the required fields.');
+        return;
+      }
+      try {
+        const res = await fetch('/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: this.name,
+            phone: this.phone,
+            email: this.email,
+            address: this.address,
+            cart: this.cart_list,
+            total: this.total
+          })
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          alert('Invoice sent to email and Telegram!');
+          localStorage.removeItem('cart');
+          window.location.href = '/';
+        } else {
+          alert('Failed to send invoice: ' + (result.error || 'Unknown error'));
+        }
+      } catch (err) {
+        alert('Error sending order: ' + err.message);
+      }
+    }
+  }
+}).mount('#app')
+
+</script>

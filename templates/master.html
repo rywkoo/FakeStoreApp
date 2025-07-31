@@ -6,34 +6,52 @@
     {% include "style.html" %}
 </head>
 <body>
+<div id="app">
 <div class="container-fluid p-0 m-0">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">FakeStore</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">FakeStore</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Catalog</a>
-                </li>
-                 <li class="nav-item active">
-                    <a class="nav-link" href="/support">Support</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Category, Title" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cart(8)</button>
-            </form>
-        </div>
-    </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">HOME</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/store">STORE</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/support">CONTACT</a>
+        </li>
+      </ul>
+
+      <form class="form-inline d-flex my-2 my-lg-0" style="min-width: 300px;">
+        <input class="form-control" type="search" placeholder="Category, Title" aria-label="Search" style="flex-grow: 1;">
+        
+      </form>
+      <a href="/cart" class="btn btn-outline-success ml-2" type="button">Cart([[ cart_list.length ]])</a>
+    </div>
+  </nav>
 </div>
 
-<div class="container">
+
+
+
+
+
+<div class="container" >
     {% block main_content %}{% endblock %}
+</div>
+
+{% include "footer.html" %}
+
 </div>
 </body>
 {% include "script.html" %}
+
+{% include "vue.html" %}
+
 </html>
